@@ -1,0 +1,14 @@
+{
+  "name": "C++ Jupyter Codespace",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "extensions": [
+    "ms-toolsai.jupyter",
+    "ms-vscode.cpptools"
+  ],
+  "forwardPorts": [8888],
+  "postCreateCommand": "jupyter lab --generate-config",
+  "remoteUser": "vscode"
+}
