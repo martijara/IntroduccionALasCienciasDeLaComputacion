@@ -11,6 +11,6 @@ struct Estudiante {
 int main() {
     Estudiante estudiante0;
     estudiante0.nombre = "Juan Perez";
-
-    
 }
+
+
