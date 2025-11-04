@@ -131,3 +131,65 @@ int main() {
 
     return 0;
 }
+
+/*
+ * This C++ file demonstrates how to compute Taylor and Lagrange polynomial approximations.
+ * 
+ * Overview:
+ * 1. Taylor Approximation:
+ *    - Approximate a function f(x) near a point a using derivatives of f at a.
+ *    - The n-th order Taylor polynomial at point a is:
+ *      
+ *      P_n(x) = f(a) + f'(a)(x-a) + f''(a)/2!(x-a)^2 + ... + f^n(a)/n!(x-a)^n
+ *
+ *    - Requires the function values and its derivatives at a.
+ *    - Good for smooth functions with known derivatives.
+ *
+ * 2. Lagrange Interpolation Polynomial:
+ *    - Given a set of points (x_i, y_i), construct a polynomial that passes through all points.
+ *    - The Lagrange polynomial L(x) is:
+ *      
+ *      L(x) = Σ y_i * l_i(x),  i=0..n
+ *
+ *      where l_i(x) = Π (x - x_j) / (x_i - x_j),  j=0..n, j≠i
+ * 
+ *    - Does not require derivatives, only function values at given points.
+ *
+ * Step-by-step to compute Taylor polynomial:
+ * 1) Choose expansion point a.
+ * 2) Calculate f(a) and derivatives f'(a), f''(a), ... up to order n.
+ * 3) Compute factorial values for denominators.
+ * 4) Evaluate polynomial P_n(x) for the desired x.
+ *
+ * Step-by-step to compute Lagrange polynomial:
+ * 1) Select n+1 data points (x_i, y_i).
+ * 2) For each i, construct basis polynomial l_i(x) by multiplying terms (x - x_j)/(x_i - x_j) where j != i.
+ * 3) Sum up y_i * l_i(x) for all i.
+ *
+ * Main derivatives for common functions used in approximations:
+ *
+ * Trigonometric functions:
+ * - d/dx sin(x) = cos(x)
+ * - d/dx cos(x) = -sin(x)
+ * - d/dx tan(x) = 1 / cos^2(x) = sec^2(x)
+ *
+ * Logarithmic function:
+ * - d/dx ln(x) = 1 / x
+ * 
+ * Higher order derivatives follow known periodic or recursive patterns, for example:
+ * - n-th derivative of sin(x) cycles every 4 derivatives:
+ *   sin(x), cos(x), -sin(x), -cos(x), sin(x), ...
+ * 
+ * - n-th derivative of ln(x):
+ *   f'(x) = 1/x,
+ *   f''(x) = -1/x^2,
+ *   f'''(x) = 2/x^3,
+ *   f^(4)(x) = -6/x^4, and so forth,
+ *   following the pattern (-1)^(n-1) * (n-1)! / x^n
+ *
+ * Usage tips:
+ * - Taylor approximation works best near the expansion point a.
+ * - Lagrange interpolation is useful when function values are given at discrete points without derivative info.
+ * - Beware of polynomial degree increase causing oscillations ("Runge phenomenon") especially for Lagrange.
+ *
+ */
