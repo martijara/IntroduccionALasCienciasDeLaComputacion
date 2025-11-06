@@ -1,0 +1,59 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    const int rows = 3;
+    const int cols = 4;
+    int arr[rows][cols] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12}
+    };
+
+    // Write title, dimensions, and array data to file
+    ofstream outFile("array.txt");
+    if (!outFile) {
+        cerr << "Failed to open file for writing.";
+        return 1;
+    }
+
+    outFile << "2D Array Data"; // Title
+    outFile << rows << " " << cols << " "; // Dimensions
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            outFile << arr[i][j];
+            if (j < cols - 1) outFile << " ";
+        }
+        outFile << " ";
+    }
+    outFile.close();
+
+    // Read title, dimensions, and array data from file, then print
+    ifstream inFile("array.txt");
+    if (!inFile) {
+        cerr << "Failed to open file for reading.";
+        return 1;
+    }
+
+    string title;
+    getline(inFile, title); // Read and ignore the title
+    int r, c;
+    inFile >> r >> c; // Read rows and columns
+
+    cout << title << " (" << r << "x" << c << "):";
+
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            int value;
+            inFile >> value;
+            cout << value << " ";
+        }
+        cout << " ";
+    }
+
+    inFile.close();
+
+    return 0;
+}
